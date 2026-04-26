@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Model Results Viewer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-TKa7Gf63VFp0QcnqVxG5XQiSMVQW2XJ0N5E0qB7fM6XXrCh8kXH6SEd9HIPx9bMa7MBLS5J3H4pPsFZrXNqXhA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/static/style.css">
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Model Results Viewer</h1>
+        <p>Showing sample input data and predicted classes from the attached trained models.</p>
+      </header>
+
+      <section class="cards">
+        <article class="card">
+          <h2>Sample Input Data</h2>
+          <p>Showing the first rows from <strong>sample input data.txt</strong>.</p>
+        </article>
+        <article class="card">
+          <h2>Predicted Classes</h2>
+          <p>Predictions are generated from your trained Random Forest and XGBoost models.</p>
+        </article>
+        <article class="card">
+          <h2>Model Status</h2>
+          <ul class="status-list">
+            {% for name, status in model_status.items() %}
+            <li><strong>{{ name }}:</strong> {{ status }}</li>
+            {% endfor %}
+          </ul>
+        </article>
+      </section>
+
+      <section class="upload-section">
+        <h2>Paste one full raw row</h2>
+        <p>Paste a single comma-separated row with the full numeric and categorical input schema required by the models.</p>
+        <form action="{{ url_for('predict_row') }}" method="post" class="upload-form">
+          <textarea name="rowdata" rows="4" placeholder="Paste 43 comma-separated values here"></textarea>
+          <button type="submit">Predict One Row</button>
+        </form>
+        {% if submitted_source %}
+        <p class="note">Showing predictions for a <strong>{{ submitted_source }}</strong>.</p>
+        {% endif %}
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="flash-messages">
+          {% for message in messages %}
+          <div class="flash">{{ message }}</div>
+          {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+      </section>
+
+      <section>
+        <h2>Input Data Preview</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                {% for col in input_columns %}
+                <th>{{ col }}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in input_rows %}
+              <tr>
+                {% for col in input_columns %}
+                <td>{{ row[col] }}</td>
+                {% endfor %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>Prediction Output</h2>
+        {% if prediction_error %}
+        <div class="error">{{ prediction_error }}</div>
+        {% endif %}
+        {% if prediction_rows %}
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                {% for col in prediction_columns %}
+                <th>{{ col }}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in prediction_rows %}
+              <tr>
+                {% for col in prediction_columns %}
+                <td>{{ row[col] }}</td>
+                {% endfor %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        {% else %}
+        <p class="note">Paste a full raw input row above to generate model predictions.</p>
+        {% endif %}
+      </section>
+
+      <section>
+        <h2>Prediction Results Preview</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                {% for col in pred_columns %}
+                <th>{{ col }}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in pred_rows %}
+              <tr>
+                {% for col in pred_columns %}
+                <td>{{ row[col] }}</td>
+                {% endfor %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>Available Model Files</h2>
+        <ul class="model-list">
+          {% for model in model_files %}
+          <li>
+            <a href="/download/{{ model }}" download>{{ model }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </section>
+
+      <footer>
+        <p>Open <code>http://localhost:5000</code> in your browser to view the app.</p>
+      </footer>
+    </div>
+  </body>
+</html>

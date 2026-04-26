@@ -1,0 +1,180 @@
+body {
+  margin: 0;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #f7fafc;
+  color: #1f2937;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+header {
+  margin-bottom: 24px;
+}
+
+h1 {
+  margin-bottom: 8px;
+  font-size: 2.25rem;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.card {
+  background: white;
+  padding: 18px;
+  border-radius: 16px;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.08);
+}
+
+.card h2 {
+  margin-top: 0;
+  font-size: 1.05rem;
+}
+
+section h2 {
+  margin-bottom: 12px;
+  font-size: 1.3rem;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.08);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px;
+}
+
+th,
+td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+th {
+  background: #111827;
+  color: white;
+  position: sticky;
+  top: 0;
+}
+
+tbody tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+.model-list {
+  list-style: none;
+  padding: 0;
+}
+
+.model-list li {
+  background: white;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  padding: 12px 16px;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.08);
+}
+
+.model-list a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.error {
+  margin-bottom: 14px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: #fef3f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+
+footer {
+  margin-top: 24px;
+  font-size: 0.95rem;
+  color: #4b5563;
+}
+
+.upload-section {
+  margin-bottom: 24px;
+}
+
+.upload-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.upload-form textarea,
+.upload-form input[type="file"] {
+  flex: 1 1 100%;
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  background: #ffffff;
+  font-family: inherit;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.upload-form textarea {
+  min-height: 120px;
+}
+
+.upload-form button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 12px;
+  background: #2563eb;
+  color: white;
+  cursor: pointer;
+}
+
+.upload-form button:hover {
+  background: #1d4ed8;
+}
+
+.flash-messages {
+  margin-top: 12px;
+}
+
+.flash {
+  padding: 12px 16px;
+  background: #fef3c7;
+  border: 1px solid #fbbf24;
+  border-radius: 12px;
+  color: #92400e;
+  margin-bottom: 10px;
+}
+
+.note {
+  margin-top: 0;
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+.status-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.status-list li {
+  margin-bottom: 8px;
+}
