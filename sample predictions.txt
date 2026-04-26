@@ -1,0 +1,11 @@
+index,Original Class,Random Forest Prediction,XGBoost Prediction
+0,Normal,Normal,Normal
+1,Fuzzers,Fuzzers,Fuzzers
+2,Backdoor,DoS,Backdoor
+3,Generic,Generic,Generic
+4,DoS,DoS,DoS
+5,Exploits,Exploits,Exploits
+6,Reconnaissance,Exploits,Exploits
+7,Analysis,Fuzzers,Backdoor
+8,Shellcode,Shellcode,Shellcode
+9,Worms,Exploits,Worms
